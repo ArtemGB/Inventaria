@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventaria.Views.PlacesPages.PlacesListPage"
+             Title="Места">
+    <AbsoluteLayout Padding="10, 10, 10, 10">
+        <CollectionView x:Name="PlacesListView"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                        AbsoluteLayout.LayoutFlags="All"
+                        ItemsSource="{Binding Places}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ListViewModel.SelectPlaceCommand}"
+                                                      CommandParameter="{Binding}"/>
+                            </SwipeView.GestureRecognizers>
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItem IconImageSource="Trash.png"
+                                           BackgroundColor="Red"
+                                           Command="{Binding ListViewModel.DeletePlaceCommand}"
+                                           CommandParameter="{Binding}"/>
+                                    <SwipeItem IconImageSource="Pencil.png"
+                                           Command="{Binding ListViewModel.EditPlaceCommand}"
+                                           CommandParameter="{Binding}"
+                                           BackgroundColor="LightGreen"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <SwipeView.Content>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding CategoryImage}" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                                    <Label Text="{Binding Name}" FontSize="Medium" Grid.Column="1" Grid.Row="0"/>
+                                    <Label Text="{Binding Description}" FontSize="Small" MaxLines="2" Grid.Column="1" Grid.Row="1"/>
+                                </Grid>
+                            </SwipeView.Content>
+                        </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <ImageButton
+            AbsoluteLayout.LayoutBounds="0.9, 0.9, 1, 1"
+            AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional" 
+            Source="AddButtonImage.png"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            BackgroundColor="Transparent"
+            Command="{Binding CreatePlaceCommand}">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Scale"
+                            Value="1" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale"
+                            Value="0.8" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </ImageButton>
+    </AbsoluteLayout>
+</ContentPage>
