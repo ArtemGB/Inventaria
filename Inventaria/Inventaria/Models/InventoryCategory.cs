@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Inventaria.Models
+﻿namespace Inventaria.Models
 {
     public enum InventoryCategory
     {

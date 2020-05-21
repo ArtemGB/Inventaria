@@ -6,8 +6,95 @@
              mc:Ignorable="d"
              x:Class="Inventaria.Views.PlacesPages.PlacePage"
              Title="{Binding Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="Pencil.png"
+                     Command="{Binding ListViewModel.EditItemCommand}"
+                     CommandParameter="{Binding}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-        </StackLayout>
+        <AbsoluteLayout Padding="10, 10, 10, 10">
+            <StackLayout Spacing="10">
+                <CollectionView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                                AbsoluteLayout.LayoutFlags="All"
+                                ItemsSource="{Binding InventoryListVM.InventoryObjects}"
+                                EmptyView="Пока здесь нет никаких предметов."
+                                RemainingItemsThreshold="5"
+                                Header="{Binding .}">
+                    <CollectionView.HeaderTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="Хозяин: " FontSize="Large"/>
+                                <Label Text="{Binding Owner}" FontSize="Body"/>
+                                <Label Text="Описание: " FontSize="Large"/>
+                                <Label Text="{Binding Description}" FontSize="Body"/>
+                                <Label Text=""/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.HeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ListViewModel.SelectItemCommand}"
+                                                          CommandParameter="{Binding}"/>
+                                </SwipeView.GestureRecognizers>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems Mode="Reveal">
+                                        <SwipeItem IconImageSource="Trash.png"
+                                                   BackgroundColor="Red"
+                                                   Command="{Binding ListViewModel.DeleteItemCommand}"
+                                                   CommandParameter="{Binding}"/>
+                                        <SwipeItem IconImageSource="Pencil.png"
+                                                   Command="{Binding ListViewModel.EditItemCommand}"
+                                                   CommandParameter="{Binding}"
+                                                   BackgroundColor="LightGreen"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding CategoryImage}" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                                        <Label Text="{Binding Name}" FontSize="Medium" Grid.Column="1" Grid.Row="0"/>
+                                        <Label Text="{Binding Description}" FontSize="Small" MaxLines="2" Grid.Column="1" Grid.Row="1"/>
+                                    </Grid>
+                                </SwipeView.Content>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <ImageButton
+            AbsoluteLayout.LayoutBounds="0.9, 0.9, 1, 1"
+            AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional" 
+            Source="AddButtonImage.png"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            BackgroundColor="Transparent"
+            Command="{Binding InventoryListVM.CreateItemCommand}">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                            Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                            Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

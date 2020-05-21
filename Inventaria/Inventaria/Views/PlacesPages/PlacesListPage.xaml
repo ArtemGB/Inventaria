@@ -10,22 +10,24 @@
         <CollectionView x:Name="PlacesListView"
                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
                         AbsoluteLayout.LayoutFlags="All"
-                        ItemsSource="{Binding Places}">
+                        ItemsSource="{Binding Places}"
+                        EmptyView="Пока что ни одного места нет."
+                        RemainingItemsThreshold="10">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                         <SwipeView>
                             <SwipeView.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ListViewModel.SelectPlaceCommand}"
+                                <TapGestureRecognizer Command="{Binding ListViewModel.SelectItemCommand}"
                                                       CommandParameter="{Binding}"/>
                             </SwipeView.GestureRecognizers>
                             <SwipeView.LeftItems>
                                 <SwipeItems Mode="Reveal">
                                     <SwipeItem IconImageSource="Trash.png"
                                            BackgroundColor="Red"
-                                           Command="{Binding ListViewModel.DeletePlaceCommand}"
+                                           Command="{Binding ListViewModel.DeleteItemCommand}"
                                            CommandParameter="{Binding}"/>
                                     <SwipeItem IconImageSource="Pencil.png"
-                                           Command="{Binding ListViewModel.EditPlaceCommand}"
+                                           Command="{Binding ListViewModel.EditItemCommand}"
                                            CommandParameter="{Binding}"
                                            BackgroundColor="LightGreen"/>
                                 </SwipeItems>
@@ -56,7 +58,7 @@
             HorizontalOptions="End"
             VerticalOptions="End"
             BackgroundColor="Transparent"
-            Command="{Binding CreatePlaceCommand}">
+            Command="{Binding CreateItemCommand}">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal">

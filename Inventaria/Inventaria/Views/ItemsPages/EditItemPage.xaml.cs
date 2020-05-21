@@ -1,36 +1,35 @@
 ﻿using Inventaria.ViewModels;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Inventaria.Views.ItemsPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddItemPage : ContentPage
+    public partial class EditItemPage : ContentPage
     {
         public PlaceVM PViewModel { get; private set; }
         public InventoryObjectVM InvViewModel { get; private set; }
-        public AddItemPage(object viewModel)
+        public EditItemPage(IItemVM viewModel)
         {
             InitializeComponent();
             if (viewModel is PlaceVM)
             {
                 PViewModel = viewModel as PlaceVM;
                 BindingContext = PViewModel;
-                Title = "Добавление нового места";
                 string[] Categories = { "Дом", "Офис", "Склад", "Предприятие", "Кабинет", "Комната", "Другое" };
                 foreach (var cat in Categories)
                     CategoryPicker.Items.Add(cat);
+                CategoryPicker.SelectedIndex = PViewModel.Category;
             }
-            if(viewModel is InventoryObjectVM)
+            if (viewModel is InventoryObjectVM)
             {
                 InvViewModel = viewModel as InventoryObjectVM;
                 BindingContext = InvViewModel;
-                Title = "Добавление нового предмета";
                 string[] Categories = { "Еда", "Электроника","Техника","Оборудование","Инструменты","Хозяйственные принадлежности","Спорт", "Строительные материалы",
                                         "Одежда", "Мебель", "Другое" };
                 foreach (var cat in Categories)
                     CategoryPicker.Items.Add(cat);
+                CategoryPicker.SelectedIndex = InvViewModel.Category;
             }
         }
 

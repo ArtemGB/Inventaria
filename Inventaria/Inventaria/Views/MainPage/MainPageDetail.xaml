@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Inventaria.Views.PlacesPages"
-             xmlns:local1="clr-namespace:Inventaria.Views.InvertoryPages"
              mc:Ignorable="d"
              x:Class="Inventaria.Views.MainPageDetail"
              Title="Управление"

@@ -4,12 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Inventaria.Views.PlacesPages.AddPlacePage"
-             Title="Добавление нового места">
+             x:Class="Inventaria.Views.ItemsPages.EditItemPage"
+             Title="Редактирование">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="Checkmark.png"
                      Order="Primary"
-                     Command="{Binding ListViewModel.SavePlaceCommand}" 
+                     Command="{Binding ListViewModel.ConfirmChangingCommand}" 
                      CommandParameter="{Binding}"
                      Clicked="ConfirmToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -21,33 +21,31 @@
                    VerticalOptions="Start"/>
             <Entry Placeholder="Введите название..."
                    x:Name="NameEntry"
-                   Text="{Binding Name}"
+                   Text="{Binding PropertiesBuffer.Name}"
+                   HorizontalOptions="Fill"
+                   MaxLength="30"/>
+            <Label Text="Владелец:"
+                   FontSize="Large"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+            <Entry Placeholder="Введите имя"
+                   Text="{Binding PropertiesBuffer.Owner}"
                    HorizontalOptions="Fill"
                    MaxLength="30"/>
             <Label Text="Описание:"
                    FontSize="Large"
                    HorizontalOptions="StartAndExpand"/>
             <Editor Placeholder="Введите описание..."
-                    Text="{Binding Description}"
+                    Text="{Binding PropertiesBuffer.Description}"
                     AutoSize="TextChanges"
                     MaxLength="200"/>
             <Label Text="Категория:"
                    FontSize="Large"
                    HorizontalOptions="Start"/>
             <Picker Title="Выберите категорию"
+                    x:Name="CategoryPicker"
                     HorizontalOptions="Fill"
-                    SelectedIndex="{Binding Category}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Дом</x:String>
-                        <x:String>Склад</x:String>
-                        <x:String>Офис</x:String>
-                        <x:String>Предприятие</x:String>
-                        <x:String>Кабинет</x:String>
-                        <x:String>Комната</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+                    SelectedIndex="{Binding PropertiesBuffer.Category}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

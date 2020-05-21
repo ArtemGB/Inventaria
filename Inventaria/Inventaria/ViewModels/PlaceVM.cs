@@ -5,27 +5,32 @@ using System.Collections.ObjectModel;
 
 namespace Inventaria.ViewModels
 {
-    public class PlaceViewModel : INotifyPropertyChanged
+    public class PlaceVM : IItemVM
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        PlacesListViewModel placesListVM;
+        PlacesListVM placesListVM;
+        InventoryListVM inventoryListVM;
 
-        public PlaceViewModel()
+        public PlaceVM()
         {
             Place = new Place();
         }
 
-        public PlaceViewModel(Place place)
+        public PlaceVM(Place place)
         {
             Place = place;
+            inventoryListVM = new InventoryListVM();
         }
 
         #region Properties
+
+        public INavigation Navigation { get; set; }
 
         public class Buffer
         {
             public string Name { get; set; }
             public string Description { get; set; }
+            public string Owner { get; set; }
             public int Category { get; set; }
             public bool IsValid
             {
@@ -34,7 +39,7 @@ namespace Inventaria.ViewModels
         }
         public Buffer PropertiesBuffer { get; set; }
         public Place Place { get; private set; }
-        public PlacesListViewModel ListViewModel
+        public PlacesListVM ListViewModel
         {
             get { return placesListVM; }
             set
@@ -43,6 +48,18 @@ namespace Inventaria.ViewModels
                 {
                     placesListVM = value;
                     OnPropertyChanged("ListViewModel");
+                }
+            }
+        }
+        public InventoryListVM InventoryListVM
+        {
+            get => inventoryListVM;
+            set
+            {
+                if(inventoryListVM!=value)
+                {
+                    inventoryListVM = value;
+                    OnPropertyChanged("InventoryListVM");
                 }
             }
         }
@@ -58,6 +75,20 @@ namespace Inventaria.ViewModels
                 }
             }
         }
+
+        public string Owner
+        {
+            get => Place.Owner;
+            set
+            {
+                if(value!=Place.Owner)
+                {
+                    Place.Owner = value;
+                    OnPropertyChanged("Owner");
+                }
+            }
+        }
+
         public string Description
         {
             get => Place.Description;
@@ -83,15 +114,13 @@ namespace Inventaria.ViewModels
                 }
             }
         }
-        public ObservableCollection<InventoryObject> InventoryObjects
-        {
-            get => Place.InventoryObjects;
-        }
         public int ID { get => Place.ID; }
+
         public ImageSource CategoryImage
         {
             get
             {
+                
                 switch (Category)
                 {
                     case 0:
@@ -107,7 +136,7 @@ namespace Inventaria.ViewModels
                     case 5:
                         return ImageSource.FromFile("LivingRoom.png");
                     default:
-                        return null;
+                        return ImageSource.FromFile("OtherPlace.png");
                 }
             }
         }

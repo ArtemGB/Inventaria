@@ -9,6 +9,7 @@ namespace Inventaria.Models
 
         private static int count = 0;
         public int ID { get; }
+        public int InventoryNumber { get; set; }
         public InventoryCategory Category { get; set; }
         public InventoryObject(): this("","", InventoryCategory.Other) { }
 

@@ -8,7 +8,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="Checkmark.png"
                      Order="Primary"
-                     Command="{Binding ListViewModel.SavePlaceCommand}" 
+                     Command="{Binding ListViewModel.SaveItemCommand}" 
                      CommandParameter="{Binding}"
                      Clicked="ConfirmToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -21,6 +21,14 @@
             <Entry Placeholder="Введите название..."
                    x:Name="NameEntry"
                    Text="{Binding Name}"
+                   HorizontalOptions="Fill"
+                   MaxLength="30"/>
+            <Label Text="Владелец:"
+                   FontSize="Large"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
+            <Entry Placeholder="Введите имя"
+                   Text="{Binding Owner}"
                    HorizontalOptions="Fill"
                    MaxLength="30"/>
             <Label Text="Описание:"

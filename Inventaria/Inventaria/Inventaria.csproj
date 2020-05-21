@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -16,16 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\InventoryPages\InventoryObjectPage.xaml">
+    <EmbeddedResource Update="Views\InventoryObjectsPages\InventoryObjectPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ItemsPages\AddItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PlacesPages\AddPlacePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\PlacesPages\EditPlacePage.xaml">
+    <EmbeddedResource Update="Views\ItemsPages\EditItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PlacesPages\PlacePage.xaml">
@@ -37,14 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\InventoryPages\InventoryObjectPage.xaml.cs">
+    <Compile Update="Views\InventoryObjectsPages\InventoryObjectPage.xaml.cs">
       <DependentUpon>InventoryObjectPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\PlacesPages\AddPlacePage.xaml.cs">
-      <DependentUpon>AddPlacePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\PlacesPages\EditPlacePage.xaml.cs">
-      <DependentUpon>EditPlacePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\PlacesPages\PlacesListPage.xaml.cs">
       <DependentUpon>PlacesListPage.xaml</DependentUpon>

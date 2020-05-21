@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Inventaria.Views.InventoryObjectsPages.InventoryObjectPage"
+             Title="{Binding Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="QRcodeIcon"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10, 10, 10, 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Инвентарный номер:" Grid.Row="0" Grid.Column="0" FontSize="Default"/>
+                <Label Text="{Binding InventoryNumber, StringFormat='#{0}'}" FontSize="Medium" Grid.Row="1" Grid.Column="0"/>
+                <Label Text="Владелец:" FontSize="Default" Grid.Row="2" Grid.Column="0"/>
+                <Label Text="{Binding Owner}" Grid.Row="3" FontSize="Default" Grid.Column="0"/>
+                <Image Source="{Binding InventoryObjectIcon}" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+            </Grid>
+            <Label Text="Описание:" FontSize="Large"/>
+            <Label Text="{Binding Description}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
