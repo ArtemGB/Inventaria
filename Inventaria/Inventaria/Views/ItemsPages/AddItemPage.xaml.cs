@@ -10,14 +10,14 @@ namespace Inventaria.Views.ItemsPages
     {
         public PlaceVM PViewModel { get; private set; }
         public InventoryObjectVM InvViewModel { get; private set; }
-        public AddItemPage(object viewModel)
+        public AddItemPage(IItemVM viewModel)
         {
             InitializeComponent();
             if (viewModel is PlaceVM)
             {
                 PViewModel = viewModel as PlaceVM;
                 BindingContext = PViewModel;
-                Title = "Добавление нового места";
+                Title = "Добавление места";
                 string[] Categories = { "Дом", "Офис", "Склад", "Предприятие", "Кабинет", "Комната", "Другое" };
                 foreach (var cat in Categories)
                     CategoryPicker.Items.Add(cat);
@@ -26,7 +26,7 @@ namespace Inventaria.Views.ItemsPages
             {
                 InvViewModel = viewModel as InventoryObjectVM;
                 BindingContext = InvViewModel;
-                Title = "Добавление нового предмета";
+                Title = "Добавление предмета";
                 string[] Categories = { "Еда", "Электроника","Техника","Оборудование","Инструменты","Хозяйственные принадлежности","Спорт", "Строительные материалы",
                                         "Одежда", "Мебель", "Другое" };
                 foreach (var cat in Categories)
